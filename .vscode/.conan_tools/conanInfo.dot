@@ -1,0 +1,8 @@
+digraph {
+    "libtiff/4.0.9@bincrafters/stable" -> {"zlib/1.2.11@conan/stable"}
+    "jasper/2.0.14@conan/stable" -> {"libjpeg/9c@bincrafters/stable"}
+    "opencv/4.1.1@conan/stable" -> {"zlib/1.2.11@conan/stable" "libjpeg/9c@bincrafters/stable" "libtiff/4.0.9@bincrafters/stable" "libwebp/1.0.3@bincrafters/stable" "libpng/1.6.37@bincrafters/stable" "jasper/2.0.14@conan/stable" "openexr/2.3.0@conan/stable" "protobuf/3.5.2@bincrafters/stable" "eigen/3.3.7@conan/stable"}
+    "libpng/1.6.37@bincrafters/stable" -> {"zlib/1.2.11@conan/stable"}
+    "openexr/2.3.0@conan/stable" -> {"zlib/1.2.11@conan/stable"}
+    "conanfile.py (Darknet/git61c9d02)" -> {"opencv/4.1.1@conan/stable"}
+}
