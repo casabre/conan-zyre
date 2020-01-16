@@ -1,0 +1,23 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2bfab61..2c66ddd 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -9,7 +9,6 @@
+ cmake_minimum_required(VERSION 2.8)
+ project(zyre)
+ enable_language(C)
+-enable_testing()
+ 
+ set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
+ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+@@ -101,6 +100,10 @@ if (CYGWIN)
+     set(MORE_LIBRARIES)
+ endif()
+ 
++if (UNIX AND NOT APPLE)
++    set(MORE_LIBRARIES m)
++endif()
++
+ list(APPEND CMAKE_MODULE_PATH "${SOURCE_DIR}")
+ set(OPTIONAL_LIBRARIES)
+ 

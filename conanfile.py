@@ -14,7 +14,7 @@ class ZyreConan(ConanFile):
     exports = ["LICENSE.md"]
     topics = ("conan", "zyre", "czmq", "zmq", "zeromq",
               "message-queue", "asynchronous")
-    exports_sources = ['CMakeLists.txt']
+    exports_sources = ['CMakeLists.txt', "zyre.diff"]
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False],
                "fPIC": [True, False], }
@@ -32,7 +32,7 @@ class ZyreConan(ConanFile):
             self.build_requires.add('ninja/1.9.0')
 
     def requirements(self):
-        self.requires("czmq/4.1.0@bincrafters/stable")
+        self.requires.add("czmq/4.2.0@bincrafters/stable")
 
     def source(self):
         sha256 = "b978a999947ddb6722d956db2427869b313225e50518c4fbbf960a68109e3e91"
@@ -50,8 +50,10 @@ class ZyreConan(ConanFile):
         return cmake
 
     def build(self):
-        env_build = self._configure_cmake()
-        env_build.build()
+        tools.patch(base_path=self._source_subfolder,
+                    patch_file="zyre.diff")
+        cmake = self._configure_cmake()
+        cmake.build()
 
     def package(self):
         self.copy(pattern="LICENSE", src=self._source_subfolder, dst='licenses')
